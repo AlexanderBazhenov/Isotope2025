@@ -88,8 +88,8 @@ figure_name_out=strcat("Isotopes_per_Elements",'.png')
 print('-dpng', '-r300', figure_name_out), pwd
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plot all and Stable Isotopes %%%%%%%%%%%%%%%%%%%
 
-sum(IsotopeElem)
-sum(IsotopeElemStable)
+##sum(IsotopeElem)
+##sum(IsotopeElemStable)
 
 % 2025-10-20
 % by hands
@@ -166,9 +166,9 @@ ZZp = find(IsotopeElemStable > 0);
 xlim([-0.5 max(ZZp) + 1.5])
 %axis('equal')
 xticks([2 10 18 36 43 54 61 82 86 92])
-set(gca,  "fontsize", 14);
-xlabel('\it Z')
-ylabel('\it Isotope count')
+set(gca,  "fontsize", 18);
+xlabel('Число протонов (заряд ядра)')
+ylabel('Число изотопов')
 
 ylim([0 12])
 yylim = ylim
@@ -183,8 +183,8 @@ for ii = 1:  Zcount-1
    end
 end
 
-pleg = legend([pOdd pEven],{'Odd isotopes', 'Even isotopes'})
-set(pleg, 'fontsize', 14);
+pleg = legend([pOdd pEven],{'Нечетный заряд', 'Четный заряд'})
+set(pleg, 'fontsize', 18);
 figure_name_out=strcat("Isotopes_per_Elements Even-Odd",'.png')
 print('-dpng', '-r300', figure_name_out), pwd
 
