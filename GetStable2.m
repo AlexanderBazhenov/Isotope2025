@@ -10,9 +10,7 @@ NN = 6657
 StableZind2 = zeros(length(N),1);
 StableNind2 = zeros(length(N),1);
 StableInd2 = zeros(length(N),1);
-UnknownZind2 = zeros(length(N),1);
-UnknownNind2 = zeros(length(N),1);
-UnknownInd2 = zeros(length(N),1);
+
 %
 FID = fopen ("DecayModeAbudance.csv", "r")
 ##z,n,name,decayModes,abundance
@@ -81,5 +79,47 @@ StableNind = StableNind2;
 StableInd = StableInd2;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+##% 2025-11-17
+##%%%%%%%%%%%%%%%%%%%%% Plot Odd-Odd, ... Even-Even %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+##
+##EEind = zeros(length(N),1);
+##EOind = zeros(length(N),1);
+##OEind = zeros(length(N),1);
+##OOind = zeros(length(N),1);
+##
+##for ii=1:length(StableInd2)
+##  if ( StableInd2(ii) ==1 )
+##    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+##    if (mod(StableZind2(ii),2) == 0) & (mod(StableNind2(ii),2) == 0)
+##      EEind(ii) = 1;
+##   end
+##    if (mod(StableZind2(ii),2) == 0) & (mod(StableNind2(ii),2) == 1)
+##      EOind(ii) = 1;
+##   end
+##   if (mod(StableZind2(ii),2) == 1) & (mod(StableNind2(ii),2) == 0)
+##      OEind(ii) = 1;
+##   end
+##   if (mod(StableZind2(ii),2) == 1) & (mod(StableNind2(ii),2) == 1)
+##      OOind(ii) = 1;
+##   end
+##  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+## end
+##end
+##
+##figure
+##hold on
+##for ii=1:length(StableInd2)
+##  if ( OOind(ii) ==1 )
+##   pOOind = plot(StableNind2(ii), StableZind2(ii),'sk');
+## end
+## if ( EEind(ii) ==1 )
+##   pEEind = plot(StableNind2(ii), StableZind2(ii),'sr');
+## end
+##  if ( OEind(ii) ==1 )
+##   pOEind = plot(StableNind2(ii), StableZind2(ii),'sb');
+## end
+## if ( EOind(ii) ==1 )
+##   pEOind = plot(StableNind2(ii), StableZind2(ii),'sg');
+## end
+##end
 
