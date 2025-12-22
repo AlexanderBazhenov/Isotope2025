@@ -305,7 +305,7 @@ print('-dpng', '-r300', figure_name_out), pwd
 % 2025-12-22
 
 NoStable = [ 43 61 84:103 ]
-Isotopes1 = [ 4 9 11 13 15 21 25 27 33 39 41 45 53 55 57 59 65 67 69 71 75 79 83 ]
+Isotopes1 = [ 4 9 11 13 15 21 25 27 33 39 41 45 51 53 55 57 59 65 67 69 71 75 79 83 ]
 Isotopes2 = [ 1 2 3 5 6 7 17 19 29 31 35 37 49 63 76 77 81 ]
 Isotopes3 = [ 8 10 12 14 16 19 ]
 Isotopes4 = [ 16 24 26 28 38 58 82 ]
@@ -325,7 +325,7 @@ RoyalMail = 4.58*[0.218, .032, 0.042]
 Pantone = 3*[0.128, 0.140, 0.036]
 %
 ColorBasic = [ 0 1 1 ]
-ColorVector = [0.85 0.75 0.7 0.65 0.6 0.55 0.5 .45 .4 .35]
+ColorVector = [0.9 0.75 0.7 0.65 0.6 0.55 0.5 .45 .4 .35]
 for rr = 1:10
   for cc = 1:18
     yy = maxYY - rr*stepxx
@@ -417,7 +417,11 @@ for ii = 1:10
         ht = text(xx+stepxx/2, yy-1*stepyy/4, num2str(ii));
     set (ht, "FontSize", 12);
 end
-
+ii = 11
+  cc = ccbase + ii
+      xx = cc*stepyy
+         ht = text(xx+stepxx/4, yy-1*stepyy/4, 'Число изотопов');
+    set (ht, "FontSize", 12);
 %%%%%%%%%%%%%%%%%% /Legend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 figure_name_out=strcat('MendeleevTableElemIsotopeCount10','.png')
