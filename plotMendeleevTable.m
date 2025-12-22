@@ -1,4 +1,5 @@
 % 2025-10-20
+% 2025-12-21
 % plot Mendeleev Table
 %
 % Namearray <- NZdata
@@ -22,6 +23,7 @@
 %
 % 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18
 %
+% % 2025-12-21
 NamearrayPlace =  ...
 [ 1  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  2;
  3  4  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  5  6  7  8  9  10;
@@ -31,8 +33,8 @@ NamearrayPlace =  ...
  55 56 NaN(1)  72 73 74 75 76 77 78 79 80 81 82 83 84 85 86;
  87 88 NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  ;
  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1);
- NaN(1)  NaN(1)  NaN(1)  57 58 59 60 61 62 63 64 65 66 67 68 69 70 71;
- NaN(1)  NaN(1)  NaN(1)  89 90 91 92 NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1) ]
+ NaN(1)  NaN(1)   57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 NaN(1);
+ NaN(1)  NaN(1)  89 90 91 92 NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1)  NaN(1) NaN(1) ]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -298,4 +300,125 @@ print('-dpng', '-r300', figure_name_out), pwd
 %%%%%%%%%%%%%%%%   Plot Mendeleev Table Number of Isotopes  %%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%   Plot Mendeleev Table Number of Isotopes  %%%%%%%%%%%%%%%%%%%%
+% 2025-12-19
+% 2025-12-22
 
+NoStable = [ 43 61 84:103 ]
+Isotopes1 = [ 4 9 11 13 15 21 25 27 33 39 41 45 53 55 57 59 65 67 69 71 75 79 83 ]
+Isotopes2 = [ 1 2 3 5 6 7 17 19 29 31 35 37 49 63 76 77 81 ]
+Isotopes3 = [ 8 10 12 14 16 19 ]
+Isotopes4 = [ 16 24 26 28 38 58 82 ]
+Isotopes5 = [ 22 28 30 32 40 74 ]
+Isotopes6 = [ 20 34 36 46 68 72 78 ]
+Isotopes7 = [ 42 44 56 60 62 64 66 70 76 80 ]
+Isotopes8 = [ 48 52 ]
+Isotopes9 = [ 54 ]
+Isotopes10 = [ 50 ]
+
+figure
+hold on
+% 2022-09-01
+% Colors_special
+OxfordBlue = [0, .33, .71]
+RoyalMail = 4.58*[0.218, .032, 0.042]
+Pantone = 3*[0.128, 0.140, 0.036]
+%
+ColorBasic = [ 0 1 1 ]
+ColorVector = [0.85 0.75 0.7 0.65 0.6 0.55 0.5 .45 .4 .35]
+for rr = 1:10
+  for cc = 1:18
+    yy = maxYY - rr*stepxx
+    xx = cc*stepyy
+    TF = isnan(NamearrayPlace(rr ,cc))
+      if ( TF ~= 1 )
+       textnow = num2str(NamearrayPlace(rr ,cc))
+       h = rectangle('Position', [xx yy ww hh]);
+       ColorNow = 1 * [1 1 1]
+      ElemNow = NamearrayPlace(rr ,cc)
+      % IC - Element isotope count
+      if  ~isempty(Isotopes1(Isotopes1 == ElemNow)) CO = 1 end;
+      if  ~isempty(Isotopes2(Isotopes2 == ElemNow)) CO = 2 end;
+      if  ~isempty(Isotopes3(Isotopes3 == ElemNow)) CO = 3 end;
+      if  ~isempty(Isotopes4(Isotopes4 == ElemNow)) CO = 4 end;
+      if  ~isempty(Isotopes5(Isotopes5 == ElemNow)) CO = 5 end;
+      if  ~isempty(Isotopes6(Isotopes6 == ElemNow)) CO = 6 end;
+      if  ~isempty(Isotopes7(Isotopes7 == ElemNow)) CO = 7 end;
+      if  ~isempty(Isotopes8(Isotopes8 == ElemNow)) CO = 8 end;
+      if  ~isempty(Isotopes9(Isotopes9 == ElemNow)) CO = 9 end;
+      if  ~isempty(Isotopes10(Isotopes10 == ElemNow)) CO = 10 end;
+      if  ~isempty(NoStable(NoStable == ElemNow)) CO = 11 end;
+      switch (CO)
+        case 1
+          ColorNow = ColorVector(1)*ColorBasic;
+        case 2
+          ColorNow = ColorVector(2)*ColorBasic;
+        case 3
+          ColorNow = ColorVector(3)*ColorBasic;
+        case 4
+          ColorNow = ColorVector(4)*ColorBasic;
+        case 5
+          ColorNow = ColorVector(5)*ColorBasic;
+        case 6
+          ColorNow = ColorVector(6)*ColorBasic;
+        case 7
+          ColorNow = ColorVector(7)*ColorBasic;
+        case 8
+          ColorNow = ColorVector(8)*ColorBasic;
+        case 9
+          ColorNow = ColorVector(9)*ColorBasic;
+        case 10
+          ColorNow = ColorVector(10)*ColorBasic;
+        case 11
+           ColorNow = [1 1 1];
+      endswitch
+       set (h, "FaceColor", ColorNow);
+       %%%%%%%%%%%%%%%%%% Inside rectangle %%%%%%%%%%%%%%%%%
+       ht = text(xx+stepxx/2, yy+3*stepyy/4, textnow);
+       set (ht, "FontSize", 12);
+       ii = NamearrayPlace(rr ,cc);
+       strnow = Namearray( scomma(ii)+1:scomma(ii+1)-1);
+       hn = text(xx+stepxx/2, yy+stepyy/4, strnow);
+       set (hn, "FontSize", 12);
+       %%%%%%%%%%%%%%%%%% /Inside rectangle %%%%%%%%%%%%%%%%
+      end
+  end
+end
+set(gca,  "fontsize", 14);
+axis off
+
+
+%%%%%%%%%%%%%%%%%% Legend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+stepxx = 4*4
+stepyy = 4*4
+ww = 4*4
+hh = 4*4
+
+rr = 1
+ccbase = 3
+    yy = maxYY
+    xx = ccbase*stepyy
+    h = rectangle('Position', [xx yy ww hh/2]);
+    ColorNow = [1 1 1]
+    set (h, "FaceColor", ColorNow);
+ %   ht = text(xx+stepxx/8, yy+3*stepyy/4, 'No Stable');
+            ht = text(xx+stepxx/2, yy-1*stepyy/4, '0');
+    set (ht, "FontSize", 12);
+##    hn = text(xx+stepxx/8, yy+stepyy/4, 'Isotopes');
+##    set (hn, "FontSize", 12);
+for ii = 1:10
+  cc = ccbase + ii
+    yy = maxYY
+    xx = cc*stepyy
+    h = rectangle('Position', [xx yy ww hh/2]);
+    ColorNow = ColorVector(ii)*ColorBasic;
+    set (h, "FaceColor", ColorNow);
+ %   ht = text(xx+stepxx/8, yy+3*stepyy/4, '1 (One)');
+        ht = text(xx+stepxx/2, yy-1*stepyy/4, num2str(ii));
+    set (ht, "FontSize", 12);
+end
+
+%%%%%%%%%%%%%%%%%% /Legend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure_name_out=strcat('MendeleevTableElemIsotopeCount10','.png')
+print('-dpng', '-r300', figure_name_out), pwd

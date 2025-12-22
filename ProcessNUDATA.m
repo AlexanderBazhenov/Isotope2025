@@ -1,3 +1,4 @@
+
 % 2024-01-31
 % 2025-10-03
 % 2025-10-22
@@ -13,7 +14,7 @@ dirroot = 'd:\ST\2025\T\Isotopes'
 ##dirki = 'D:\ST\2024\T\kinterval-0.0.1'
 ##dirOld =  'd:\ST\2023\T\'
 % FTI
-##dirroot ='E:\Users\Public\Documents\ST\2025\T\Isotopes\'
+dirroot ='E:\Users\Public\Documents\ST\2025\T\Isotopes\'
 ##dirki = 'e:\Users\Public\Documents\ST\2024\T\kinterval-0.0.1'
 ##dirOld =  'e:\Users\Public\Documents\ST\2023\T\'
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,7 +28,7 @@ pwd
 % getNZdata
 load NZdata
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     START    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+GetStable2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ZZ = 29
@@ -143,6 +144,38 @@ xlabel('A')
 ylabel('Z')
 
 titlestr = strcat("Сечения радиационного захвата нейтронов. Логарифмическая шкала")
+titlestrfile = strcat("(N,Gamma) cross-section")
+ht = title(titlestr)
+set(ht, 'Fontweight', 'normal')
+figure_name_out=strcat(titlestrfile,'.png')
+print('-dpng', '-r300', figure_name_out), pwd
+
+
+figure
+hold on
+Zmin = 1
+Zmax = 117
+Amin = 1
+Amax = 294
+[Xmm, Ymm] = meshgrid (Amin:Amax, Zmin:Zmax);
+%pSNG = pcolor(Xmm,Ymm, SNGA(Amin:Amax, Zmin:Zmax)')
+pSNG = image(Xmm,Ymm, SNGA(Amin:Amax, Zmin:Zmax)')
+set(pSNG, 'linewidth', 1)
+set(pSNG, 'edgecolor', 0.9*[1 1 1])
+
+caxis([0 100])
+hc = colorbar('location', 'southoutside')
+set(hc, 'FontSize', 16);
+grid on
+set(gca, 'Fontsize', 16)
+
+xlim([1 265])
+ylim([1 110])
+
+xlabel('A')
+ylabel('Z')
+
+titlestr = strcat("Сечения радиационного захвата нейтронов")
 titlestrfile = strcat("(N,Gamma) cross-section")
 ht = title(titlestr)
 set(ht, 'Fontweight', 'normal')
@@ -339,4 +372,5 @@ print('-dpng', '-r300', figure_name_out), pwd
 Ind2IndNZ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 PlotAlphaBetaECStableNZ
+
 
