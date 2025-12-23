@@ -1,6 +1,35 @@
 % 2025-10-20
 % 2025-12-21
 % plot Mendeleev Table
+
+clear all
+close all
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     PLACE    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+dirroot = 'd:\ST\2025\T\Isotopes'
+##dirki = 'd:\ST\2024\T\kinterval-0.0.1'
+##dirOld =  'd:\ST\2023\T\'
+% HomePC
+##dirroot = 'D:\ST\2024\T\'
+##dirki = 'D:\ST\2024\T\kinterval-0.0.1'
+##dirOld =  'd:\ST\2023\T\'
+% FTI
+dirroot ='E:\Users\Public\Documents\ST\2025\T\Isotopes\'
+##dirki = 'e:\Users\Public\Documents\ST\2024\T\kinterval-0.0.1'
+##dirOld =  'e:\Users\Public\Documents\ST\2023\T\'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     START    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+addpath(dirroot)
+%addpath(dirOld)
+cd(dirroot)
+pwd
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     START    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2024-01-29
+% getNZdata
+load NZdata
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     START    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+GetStable2
+
+
 %
 % Namearray <- NZdata
 % Namearray = [,H,He,Li,Be,B,C,N,O,F,Ne,Na,Mg,Al,Si,P,S,Cl,Ar,K,Ca,Sc,Ti,V,Cr,Mn,
@@ -299,16 +328,16 @@ figure_name_out=strcat('MendeleevTableElemIsotopeCount','.png')
 print('-dpng', '-r300', figure_name_out), pwd
 %%%%%%%%%%%%%%%%   Plot Mendeleev Table Number of Isotopes  %%%%%%%%%%%%%%%%%%%%
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%   Plot Mendeleev Table Number of Isotopes  %%%%%%%%%%%%%%%%%%%%
 % 2025-12-19
 % 2025-12-22
 
 NoStable = [ 43 61 84:103 ]
-Isotopes1 = [ 4 9 11 13 15 21 25 27 33 39 41 45 51 53 55 57 59 65 67 69 71 75 79 83 ]
-Isotopes2 = [ 1 2 3 5 6 7 17 19 29 31 35 37 49 63 76 77 81 ]
-Isotopes3 = [ 8 10 12 14 16 19 ]
-Isotopes4 = [ 16 24 26 28 38 58 82 ]
+Isotopes1 = [ 4 9 11 13 15 21 25 27 33 39 41 45 53 55  59 65 67 69  79 83 ]
+Isotopes2 = [ 1 2 3 5 6 7 17 19 23 29 31 35 37 47 49 51 57 63 71 73 75 77 81 ]
+Isotopes3 = [ 8 10 16 18 ]
+Isotopes4 = [ 16 24 26  38 58 82 ]
 Isotopes5 = [ 22 28 30 32 40 74 ]
 Isotopes6 = [ 20 34 36 46 68 72 78 ]
 Isotopes7 = [ 42 44 56 60 62 64 66 70 76 80 ]
@@ -316,16 +345,27 @@ Isotopes8 = [ 48 52 ]
 Isotopes9 = [ 54 ]
 Isotopes10 = [ 50 ]
 
-figure
-hold on
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PLOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % 2022-09-01
 % Colors_special
 OxfordBlue = [0, .33, .71]
 RoyalMail = 4.58*[0.218, .032, 0.042]
 Pantone = 3*[0.128, 0.140, 0.036]
+
+gradeNo = 10
+step = fix(length(viridis)/ gradeNo /2)
+ColorArrayAll = viridis;
+ColorArray= zeros(gradeNo,3);
+for ii = 1:gradeNo
+  argcolor = fix(length(viridis) /2) + ii*step;
+  ColorArray(ii,:) = ColorArrayAll(argcolor,:);
+end
 %
-ColorBasic = [ 0 1 1 ]
-ColorVector = [0.9 0.75 0.7 0.65 0.6 0.55 0.5 .45 .4 .35]
+
+%%%%%%%%%%%%%%%%%%% Color Basic Plot %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+figure
+hold on
 for rr = 1:10
   for cc = 1:18
     yy = maxYY - rr*stepxx
@@ -350,25 +390,25 @@ for rr = 1:10
       if  ~isempty(NoStable(NoStable == ElemNow)) CO = 11 end;
       switch (CO)
         case 1
-          ColorNow = ColorVector(1)*ColorBasic;
+          ColorNow = ColorArray(1,:);
         case 2
-          ColorNow = ColorVector(2)*ColorBasic;
+          ColorNow = ColorArray(2,:);
         case 3
-          ColorNow = ColorVector(3)*ColorBasic;
+          ColorNow = ColorArray(3,:);
         case 4
-          ColorNow = ColorVector(4)*ColorBasic;
+          ColorNow = ColorArray(4,:);
         case 5
-          ColorNow = ColorVector(5)*ColorBasic;
+          ColorNow = ColorArray(5,:);
         case 6
-          ColorNow = ColorVector(6)*ColorBasic;
+          ColorNow = ColorArray(6,:);
         case 7
-          ColorNow = ColorVector(7)*ColorBasic;
+          ColorNow = ColorArray(7,:);
         case 8
-          ColorNow = ColorVector(8)*ColorBasic;
+          ColorNow = ColorArray(8,:);
         case 9
-          ColorNow = ColorVector(9)*ColorBasic;
+          ColorNow = ColorArray(9,:);
         case 10
-          ColorNow = ColorVector(10)*ColorBasic;
+          ColorNow = ColorArray(10,:);
         case 11
            ColorNow = [1 1 1];
       endswitch
@@ -384,6 +424,7 @@ for rr = 1:10
       end
   end
 end
+%%%%%%%%%%%%%%%%%%% /Color Basic Plot %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 set(gca,  "fontsize", 14);
 axis off
 
@@ -411,7 +452,7 @@ for ii = 1:10
     yy = maxYY
     xx = cc*stepyy
     h = rectangle('Position', [xx yy ww hh/2]);
-    ColorNow = ColorVector(ii)*ColorBasic;
+    ColorNow = ColorArray(ii,:);
     set (h, "FaceColor", ColorNow);
  %   ht = text(xx+stepxx/8, yy+3*stepyy/4, '1 (One)');
         ht = text(xx+stepxx/2, yy-1*stepyy/4, num2str(ii));
@@ -420,7 +461,7 @@ end
 ii = 11
   cc = ccbase + ii
       xx = cc*stepyy
-         ht = text(xx+stepxx/4, yy-1*stepyy/4, 'Число изотопов');
+         ht = text(xx+stepxx/4, yy-1*stepyy/4, 'Число стабильных изотопов');
     set (ht, "FontSize", 12);
 %%%%%%%%%%%%%%%%%% /Legend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
