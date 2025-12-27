@@ -34,12 +34,16 @@ YY1930indN = zeros(NN,1);
 YY1940ind = zeros(NN,1);
 YY1940indZ = zeros(NN,1);
 YY1940indN = zeros(NN,1);
+YY1950ind = zeros(NN,1);
+YY1950indZ = zeros(NN,1);
+YY1950indN = zeros(NN,1);
 %
 FirstYY = [1898:1914]
 YY1910 = [1915:1920]
 YY1920 = [1921:1930]
 YY1930 = [1931:1940]
 YY1940 = [1941:1950]
+YY1950 = [1951:2020]
 %
 for ii = 1:NN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -53,18 +57,23 @@ sYY1910 = 0;
  if (YY >= min(YY1910) ) & (YY <= max(YY1910) )
    sYY1910 = 1;
  endif
- sYY1920 = 0;
+sYY1920 = 0;
  if (YY >= min(YY1920) ) & (YY <= max(YY1920) )
    sYY1920 = 1;
  endif
-  sYY1930 = 0;
+sYY1930 = 0;
  if (YY >= min(YY1930) ) & (YY <= max(YY1930) )
    sYY1930 = 1;
  endif
-   sYY1940 = 0;
+ sYY1940 = 0;
  if (YY >= min(YY1940) ) & (YY <= max(YY1940) )
-   sYY1940 = 1;
+ sYY1940 = 1;
+endif
+sYY1950 = 0;
+ if (YY >= min(YY1950) ) & (YY <= max(YY1950) )
+   sYY1950 = 1;
  endif
+ % check YY in
 if (sFirstYY == 1)
        Firstind(ii) = 1;
        FirstindZ(ii) = X(ii,1);
@@ -90,6 +99,11 @@ endif
        YY1940indZ(ii) = X(ii,1);
        YY1940indN(ii) = X(ii,2);
  endif
+ if (sYY1950 == 1)
+       YY1950ind(ii) = 1;
+       YY1950indZ(ii) = X(ii,1);
+       YY1950indN(ii) = X(ii,2);
+ endif
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
 
@@ -112,11 +126,41 @@ if ( YY1930ind(ii) ==1 )
    pYY1930 = plot(YY1930indN(ii)+YY1930indZ(ii), YY1930indZ(ii),'sr');
  end
  if ( YY1940ind(ii) ==1 )
-   pYY1940 = plot(YY1940indN(ii)+YY1940indZ(ii), YY1940indZ(ii),'.k');
+   pYY1940 = plot(YY1940indN(ii)+YY1940indZ(ii), YY1940indZ(ii),'ok');
  end
+##  if ( YY1950ind(ii) ==1 )
+##   pYY1950 = plot(YY1950indN(ii)+YY1950indZ(ii), YY1950indZ(ii),'oy');
+## end
 end
 %
 
+for ii=1:length(Firstind)
+##if ( Firstind(ii) ==1 )
+##   pFirst = plot(FirstindN(ii)+FirstindZ(ii), FirstindZ(ii),'sk');
+## end
+##if ( YY1910ind(ii) ==1 )
+##   pYY1910 = plot(YY1910indN(ii)+YY1910indZ(ii), YY1910indZ(ii),'sb');
+## end
+##if ( YY1920ind(ii) ==1 )
+##   pYY1920 = plot(YY1920indN(ii)+YY1920indZ(ii), YY1920indZ(ii),'sg');
+## end
+##if ( YY1930ind(ii) ==1 )
+##   pYY1930 = plot(YY1930indN(ii)+YY1930indZ(ii), YY1930indZ(ii),'sr');
+## end
+## if ( YY1940ind(ii) ==1 )
+##   pYY1940 = plot(YY1940indN(ii)+YY1940indZ(ii), YY1940indZ(ii),'ok');
+## end
+  if ( YY1950ind(ii) ==1 )
+   pYY1950 = plot(YY1950indN(ii)+YY1950indZ(ii), YY1950indZ(ii),'oy');
+ end
+end
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+set(gca, 'Fontsize', 14)
+box on
+grid on
+xlabel('A')
+ylabel('Z')
 
-
+figure_name_out=strcat("DiscoveryYearAZ",'.png')
+print('-dpng', '-r300', figure_name_out), pwd
