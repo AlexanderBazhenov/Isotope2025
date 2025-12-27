@@ -14,7 +14,7 @@ dirroot = 'd:\ST\2025\T\Isotopes'
 ##dirki = 'D:\ST\2024\T\kinterval-0.0.1'
 ##dirOld =  'd:\ST\2023\T\'
 % FTI
-dirroot ='E:\Users\Public\Documents\ST\2025\T\Isotopes\'
+%dirroot ='E:\Users\Public\Documents\ST\2025\T\Isotopes\'
 ##dirki = 'e:\Users\Public\Documents\ST\2024\T\kinterval-0.0.1'
 ##dirOld =  'e:\Users\Public\Documents\ST\2023\T\'
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
