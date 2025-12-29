@@ -14,7 +14,8 @@ step = fix(length(viridis)/ gradeNo /2)
 ColorArrayAll = viridis;
 ColorArray= zeros(gradeNo,3);
 for ii = 1:gradeNo
-  argcolor = fix(length(viridis) /2) + ii*step;
+%  argcolor = fix(length(viridis) /2) + ii*step;
+    argcolor =  ii*step;
   ColorArray(ii,:) = ColorArrayAll(argcolor,:);
 end
 
@@ -126,6 +127,7 @@ if ( Firstind(ii) ==1 )
   h = rectangle('Position', [xx yy ww hh]);
     ColorNow = [1 0 0];
     set (h, "FaceColor", ColorNow);
+        set (h, "EdgeColor", 0.9*[1 1 1]);
  end
 end
 
@@ -141,8 +143,9 @@ if ( YY1910ind(ii) ==1 )
     xx = YY1910indN(ii)+YY1910indZ(ii);
   yy = YY1910indZ(ii);
   h = rectangle('Position', [xx yy ww hh]);
-    ColorNow = ColorArray(2,:);
+    ColorNow = ColorArray(1,:);
     set (h, "FaceColor", ColorNow);
+            set (h, "EdgeColor", 0.9*[1 1 1]);
 end
 if ( YY1920ind(ii) ==1 )
     xx = YY1920indN(ii)+YY1920indZ(ii);
@@ -150,20 +153,23 @@ if ( YY1920ind(ii) ==1 )
   h = rectangle('Position', [xx yy ww hh]);
     ColorNow = ColorArray(4,:);
     set (h, "FaceColor", ColorNow);
+            set (h, "EdgeColor", 0.9*[1 1 1]);
 end
 if ( YY1930ind(ii) ==1 )
     xx = YY1930indN(ii)+YY1930indZ(ii);
   yy = YY1930indZ(ii);
   h = rectangle('Position', [xx yy ww hh]);
-    ColorNow = ColorArray(6,:);
+    ColorNow = ColorArray(7,:);
     set (h, "FaceColor", ColorNow);
+            set (h, "EdgeColor", 0.9*[1 1 1]);
 end
 if ( YY1940ind(ii) ==1 )
     xx = YY1940indN(ii)+YY1940indZ(ii);
   yy = YY1940indZ(ii);
   h = rectangle('Position', [xx yy ww hh]);
-    ColorNow = ColorArray(8,:);
+    ColorNow = ColorArray(9,:);
     set (h, "FaceColor", ColorNow);
+            set (h, "EdgeColor", 0.9*[1 1 1]);
 end
 ##if ( YY1950ind(ii) ==1 )
 ##    xx = YY1950indN(ii)+YY1950indZ(ii);
@@ -181,6 +187,7 @@ if ( YY1950ind(ii) ==1 )
   h = rectangle('Position', [xx yy ww hh]);
     ColorNow = [1 1 0];
     set (h, "FaceColor", ColorNow);
+                set (h, "EdgeColor", 0.9*[1 1 1]);
 end
 end
 %
