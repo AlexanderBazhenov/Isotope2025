@@ -112,7 +112,7 @@ end
 
 figure
 hold on
-for ii=1:length(Firstind)
+for ii=1:NN%length(Firstind)
 if ( Firstind(ii) ==1 )
    pFirst = plot(FirstindN(ii)+FirstindZ(ii), FirstindZ(ii),'sk');
  end
@@ -134,7 +134,7 @@ if ( YY1930ind(ii) ==1 )
 end
 %
 
-for ii=1:length(Firstind)
+for ii=1:NN%length(Firstind)
 ##if ( Firstind(ii) ==1 )
 ##   pFirst = plot(FirstindN(ii)+FirstindZ(ii), FirstindZ(ii),'sk');
 ## end
