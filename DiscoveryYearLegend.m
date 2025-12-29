@@ -10,7 +10,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% plot Properties %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 gradeNo = 10
-step = fix(length(viridis)/ gradeNo /2)
+%step = fix(length(viridis)/ gradeNo /2)
+step = fix(length(viridis)/ gradeNo )
 ColorArrayAll = viridis;
 ColorArray= zeros(gradeNo,3);
 for ii = 1:gradeNo
