@@ -1,4 +1,4 @@
-% 2025-12-29
+ % 2025-12-29
 % DiscoveryYearLegend
 % for GetDiscoveryYear.m
 ##FirstYY = [1898:1914]
