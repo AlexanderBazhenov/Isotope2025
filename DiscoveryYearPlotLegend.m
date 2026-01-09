@@ -60,40 +60,58 @@ YYall = [FirstYY 2020]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Time Slices   %%%%%%%%%%%%%%%%%%%%%%%%
 
-gradeNo = length(YYall)-1
+gradeNo = length(YYall)
 %step = fix(length(viridis)/ gradeNo /2)
 step = fix(length(viridis)/ gradeNo )
 ColorArrayAll = viridis;
 ColorArray= zeros(gradeNo,3);
-for ii = 1:gradeNo
+for ii = 1:gradeNo-1
 %  argcolor = fix(length(viridis) /2) + ii*step;
     argcolor =  ii*step;
   ColorArray(ii,:) = ColorArrayAll(argcolor,:);
 end
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Prepare Data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-ww = 1
-hh = 1
+ColorArray(end,:) = ColorArrayAll(end,:)
 
 figure
 hold on
 
-for ii = 1:NN
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-YY = X(ii,3);
-% check YY in grade
-for kk=1:gradeNo
-%kk
-if ( YY >= YYall(kk)  & YY < YYall(kk+1) )
-  xx = X(ii,1)+X(ii,2);
-  yy = X(ii,1);
-  h = rectangle('Position', [xx yy ww hh]);
-  ColorNow = ColorArray(kk,:);
-  set (h, "FaceColor", ColorNow);
-  set (h, "EdgeColor", 0.9*[1 1 1]);
-endif
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plot Data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+DiscoveryYearPlotData
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plot Data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% Color Legend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+xlim([0 300])
+ylim([0 130])
+
+ww = 4*4
+hh = 2
+
+stepxx = ww
+stepyy = 4
+
+##maxXX = LinesTableMax*stepxx
+maxYY = 120 %ElemPeriodChemical*stepyy
+
+ccbase = 1
+
+for ii = 1:gradeNo
+  cc = ccbase + ii-1
+    yy = maxYY
+    xx = cc*stepxx
+    h = rectangle('Position', [xx yy ww-1 hh]);
+    ColorNow = ColorArray(ii,:);
+    set (h, "FaceColor", ColorNow);
+%
+   textnow = num2str(YYall(ii));
+   ht = text(xx+stepxx/8, yy+5*stepyy/4, textnow);
+   set (ht, "FontSize", 12);
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% /Prepare Data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+set(gca, 'Fontsize', 14)
+box on
+grid on
+xlabel('A')
+ylabel('Z')
+
+figure_name_out=strcat("DiscoveryYearAZ",num2str(FirstYY(1)),'-',num2str(FirstYY(end)),'.png')
+print('-dpng', '-r300', figure_name_out), pwd
