@@ -64,7 +64,7 @@ for ii = 1:gradeNo-1
   cc = ccbase + ii-1
     yy = 93
     xx = cc
-    h = rectangle('Position', [xx yy 3 hh]);
+    h = rectangle('Position', [xx yy 1 hh]);
     ColorNow = ColorArray(ii,:);
     set (h, "FaceColor", ColorNow);
 %
@@ -77,7 +77,7 @@ ii = gradeNo
   cc = ccbase + ii-1
     yy = 93
     xx = cc
-    h = rectangle('Position', [xx yy 3 hh]);
+    h = rectangle('Position', [xx yy 1 hh]);
     ColorNow = ColorArray(ii,:);
     set (h, "FaceColor", ColorNow);
 %
