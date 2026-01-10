@@ -1,76 +1,9 @@
 % 2025-12-30
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Time Slices   %%%%%%%%%%%%%%%%%%%%%%%%
-%
-##YY1898ind = zeros(NN,1);
-##YY1898indZ = zeros(NN,1);
-##YY1898indN = zeros(NN,1);
-##YY1899ind = zeros(NN,1);
-##YY1899indZ = zeros(NN,1);
-##YY1899indN = zeros(NN,1);
-##%
-##YY1900ind = zeros(NN,1);
-##YY1900indZ = zeros(NN,1);
-##YY1900indN = zeros(NN,1);
-##YY1901ind = zeros(NN,1);
-##YY1901indZ = zeros(NN,1);
-##YY1901indN = zeros(NN,1);
-##YY1902ind = zeros(NN,1);
-##YY1902indZ = zeros(NN,1);
-##YY1902indN = zeros(NN,1);
-##YY1903ind = zeros(NN,1);
-##YY1903indZ = zeros(NN,1);
-##YY1903indN = zeros(NN,1);
-##YY1904ind = zeros(NN,1);
-##YY1904indZ = zeros(NN,1);
-##YY1904indN = zeros(NN,1);
-##YY1905ind = zeros(NN,1);
-##YY1905indZ = zeros(NN,1);
-##YY1905indN = zeros(NN,1);
-##YY1906ind = zeros(NN,1);
-##YY1906indZ = zeros(NN,1);
-##YY1906indN = zeros(NN,1);
-##YY1907ind = zeros(NN,1);
-##YY1907indZ = zeros(NN,1);
-##YY1907indN = zeros(NN,1);
-##YY1908ind = zeros(NN,1);
-##YY1908indZ = zeros(NN,1);
-##YY1908indN = zeros(NN,1);
-##YY1909ind = zeros(NN,1);
-##YY1909indZ = zeros(NN,1);
-##YY1909indN = zeros(NN,1);
-##YY1910ind = zeros(NN,1);
-##YY1910indZ = zeros(NN,1);
-##YY1910indN = zeros(NN,1);
-##YY1911ind = zeros(NN,1);
-##YY1911indZ = zeros(NN,1);
-##YY1911indN = zeros(NN,1);
-##YY1912ind = zeros(NN,1);
-##YY1912indZ = zeros(NN,1);
-##YY1912indN = zeros(NN,1);
-##YY1913ind = zeros(NN,1);
-##YY1913indZ = zeros(NN,1);
-##YY1913indN = zeros(NN,1);
-##YY1914ind = zeros(NN,1);
-##YY1914indZ = zeros(NN,1);
-##YY1914indN = zeros(NN,1);
-%
-FirstYY = [1898:1914]
-YYall = [FirstYY 2020]
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     Time Slices   %%%%%%%%%%%%%%%%%%%%%%%%
 
-gradeNo = length(YYall)
-%step = fix(length(viridis)/ gradeNo /2)
-step = fix(length(viridis)/ gradeNo )
-ColorArrayAll = viridis;
-ColorArray= zeros(gradeNo,3);
-for ii = 1:gradeNo-1
-%  argcolor = fix(length(viridis) /2) + ii*step;
-    argcolor =  ii*step;
-  ColorArray(ii,:) = ColorArrayAll(argcolor,:);
-end
-ColorArray(end,:) = ColorArrayAll(end,:)
+
+
 
 figure
 hold on
@@ -113,5 +46,81 @@ grid on
 xlabel('A')
 ylabel('Z')
 
+axis on
+xTICKVAL = [206:2:240]
+xticks(xTICKVAL)
+
+
 figure_name_out=strcat("DiscoveryYearAZ",num2str(FirstYY(1)),'-',num2str(FirstYY(end)),'.png')
+print('-dpng', '-r300', figure_name_out), pwd
+
+%%%%%%%%%%%%%%%%%%%% Color Legend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+xlim([205.5 242])
+ylim([81 94])
+
+ccbase = 206
+
+for ii = 1:gradeNo-1
+  cc = ccbase + ii-1
+    yy = 93
+    xx = cc
+    h = rectangle('Position', [xx yy 3 hh]);
+    ColorNow = ColorArray(ii,:);
+    set (h, "FaceColor", ColorNow);
+%
+   textnow = num2str(YYall(ii));
+   ht = text(xx+1/4, yy-1/2, textnow);
+   set (ht, "FontSize", 12);
+end
+
+ii = gradeNo
+  cc = ccbase + ii-1
+    yy = 93
+    xx = cc
+    h = rectangle('Position', [xx yy 3 hh]);
+    ColorNow = ColorArray(ii,:);
+    set (h, "FaceColor", ColorNow);
+%
+   textnow = num2str(YYall(ii));
+   ht = text(xx+1/4, yy-1/2, textnow);
+   set (ht, "FontSize", 12);
+
+dy = 0%.5
+dx = 0%.5
+   pU = text(241, 92+dy, 'U')
+set (pU, "color", "red");
+set(pU, 'fontweight', 'bold')
+set (pU, "fontsize", 14);
+pT = text(241, 90+dy, 'Th')
+set (pT, "fontsize", 14);
+set (pT, "color", "red");
+set(pT, 'fontweight', 'bold')
+pP = text(241, 82+dy, 'Pb')
+set (pP, "fontsize", 14);
+set (pP, "color", [0 0.4 0.7]);
+set(pP, 'fontweight', 'bold')
+%
+pRa = text(241, 88+dy, 'Ra')
+set (pRa, "fontsize", 14);
+pRn = text(241, 86+dy, 'Rn')
+set (pRn, "fontsize", 14);
+pPo = text(241, 84+dy, 'Po')
+set (pPo, "fontsize", 14);
+##pHg= text(241, 80+dy, 'Hg')
+##set (pHg, "fontsize", 14);
+
+pAc = text(241, 91+dy, 'Pa')
+set (pAc, "fontsize", 14);
+pAc = text(241, 89+dy, 'Ac')
+set (pAc, "fontsize", 14);
+pFr = text(241, 87+dy, 'Fr')
+set (pFr, "fontsize", 14);
+pAt = text(241, 85+dy, 'At')
+set (pAt, "fontsize", 14);
+pBi = text(241, 83+dy, 'Bi')
+set (pBi, "fontsize", 14);
+
+
+
+figure_name_out=strcat("DiscoveryYearAZ",num2str(FirstYY(1)),'-',num2str(FirstYY(end)),'zoom.png')
 print('-dpng', '-r300', figure_name_out), pwd
