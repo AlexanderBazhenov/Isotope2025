@@ -1,11 +1,14 @@
 % 2025-10-20
 % 2025-12-21
+% 2026-02-07
 % plot Mendeleev Table
 
 clear all
 close all
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     PLACE    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dirroot = 'd:\ST\2025\T\Isotopes'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     PLACE    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%dirroot = 'd:\ST\2025\T\Isotopes'
+dirroot = 'd:\ST\2026\T\Isotopes'
 ##dirki = 'd:\ST\2024\T\kinterval-0.0.1'
 ##dirOld =  'd:\ST\2023\T\'
 % HomePC
