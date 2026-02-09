@@ -77,7 +77,7 @@ NamearrayPlace =  ...
 % 2026-02-08
 ElementDiscoveryHistory
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+AllElements  = [1:92]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Неолит
 NoStable = setdiff(NoStable, Isotopes1)
@@ -92,7 +92,23 @@ NoStable = setdiff(NoStable, Isotopes5)
 % XIX-II
 NoStable = setdiff(NoStable, Isotopes6)
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Prout
+NoStable = setdiff(NoStable, Isotopes1)
+% BC
+NoStable = setdiff(NoStable, Isotopes2)
+% Medieval
+NoStable = setdiff(NoStable, Isotopes3)
+% XVIII
+NoStable = setdiff(NoStable, Isotopes4)
+% XIX-I
+NoStable = setdiff(NoStable, Isotopes5a)
+Elements1815 = setdiff(AllElements, NoStable)
+
 LegendText = [ ', Неолит, ВС, Medieval, XVIII, XIX-I, XIX-II' ]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+LegendText = [ ', 1815' ]
 scommaLegend = strfind(LegendText, ',')
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PLOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,6 +208,60 @@ end
 %%%%%%%%%%%%%%%%%%% /Color Basic Plot %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 set(gca,  "fontsize", 14);
 axis off
+
+
+%%%%%%%%%%%%%%%%%%% Prout 1815 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+figure
+hold on
+for rr = 1:10
+  for cc = 1:18
+    yy = maxYY - rr*stepxx
+    xx = cc*stepyy
+    TF = isnan(NamearrayPlace(rr ,cc))
+      if ( TF ~= 1 )
+       textnow = num2str(NamearrayPlace(rr ,cc))
+       h = rectangle('Position', [xx yy ww hh]);
+       ColorNow = 1 * [1 1 1]
+      ElemNow = NamearrayPlace(rr ,cc)
+      % IC - Element isotope count
+      if  ~isempty(Elements1815(Elements1815 == ElemNow)) CO = 1 end;
+      if  ~isempty(NoStable(NoStable == ElemNow)) CO = 11 end;
+      switch (CO)
+        case 1
+          ColorNow = ColorArray(1,:);
+##        case 2
+##          ColorNow = ColorArray(2,:);
+##        case 3
+##          ColorNow = ColorArray(3,:);
+##        case 4
+##          ColorNow = ColorArray(4,:);
+##        case 5
+##          ColorNow = ColorArray(5,:);
+##       case 6
+##          ColorNow = ColorArray(6,:);
+##        case 7
+##          ColorNow = ColorArray(7,:);
+##        case 8
+##          ColorNow = ColorArray(8,:);
+##        case 9
+##          ColorNow = ColorArray(9,:);
+##        case 10
+##          ColorNow = ColorArray(10,:);
+        case 11
+           ColorNow = [1 1 1];
+      endswitch
+       set (h, "FaceColor", ColorNow);
+       %%%%%%%%%%%%%%%%%% Inside rectangle %%%%%%%%%%%%%%%%%
+       ht = text(xx+stepxx/2, yy+3*stepyy/4, textnow);
+       set (ht, "FontSize", 12);
+       ii = NamearrayPlace(rr ,cc);
+       strnow = Namearray( scomma(ii)+1:scomma(ii+1)-1);
+       hn = text(xx+stepxx/2, yy+stepyy/4, strnow);
+       set (hn, "FontSize", 12);
+       %%%%%%%%%%%%%%%%%% /Inside rectangle %%%%%%%%%%%%%%%%
+      end
+  end
+end
 
 
 %%%%%%%%%%%%%%%%%% Legend %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
