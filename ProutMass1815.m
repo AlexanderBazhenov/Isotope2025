@@ -29,5 +29,5 @@ set(gca,  "fontsize", 14);
 grid on
 xlabel('Z')
 ylabel('Weight H=1')
-figure_name_out=strcat('ProutWeight1815,'.png')
+figure_name_out=strcat('ProutWeight1815','.png')
 print('-dpng', '-r300', figure_name_out), pwd
