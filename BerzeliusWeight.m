@@ -47,3 +47,14 @@ xlabel('Z')
 ylabel('Weight O=100')
 figure_name_out=strcat('BerzeliusWeight','.png')
 print('-dpng', '-r300', figure_name_out), pwd
+
+figure
+hold on
+pB = plot( BerzeliusWeight, 'sb' )
+pP = plot( ProutMass1815, 'sr' )
+set(gca,  "fontsize", 14);
+grid on
+xlabel('Z')
+ylabel('Weight')
+figure_name_out=strcat('ProutBerzeliusWeight','.png')
+print('-dpng', '-r300', figure_name_out), pwd
