@@ -29,9 +29,15 @@ NaN(1), NaN(1), NaN(1),NaN(1), NaN(1), NaN(1), NaN(1), 95,NaN(1), NaN(1), NaN(1)
 ## NaN(1), NaN(1), NaN(1), NaN(1), NaN(1),96, NaN(1), NaN(1)]
 
 figure
-plot( MendeleevWeight, 'sk' )
-set(gca,  "fontsize", 14);
+hM = plot( MendeleevWeight, 'sb' )
+set(hM, 'markersize', 4)
+set(gca,  "fontsize", 12);
 grid on
+
+xticksarray = [2, 10, 18, 21, 31, 32, 36, 43, 49, 54, 86]
+xticks(xticksarray)
+%yticks(81:1:93)
+
 xlabel('Z')
 ylabel('Weight  H = 1')
 figure_name_out=strcat('MendeleevWeight','.png')
