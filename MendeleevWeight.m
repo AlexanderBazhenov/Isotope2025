@@ -30,7 +30,13 @@ NaN(1), NaN(1), NaN(1),NaN(1), NaN(1), NaN(1), NaN(1), 95,NaN(1), NaN(1), NaN(1)
 
 figure
 hM = plot( MendeleevWeight, 'sb' )
-set(hM, 'markersize', 4)
+set(hM, 'markersize', 6)
+set(hM, 'markerfacecolor', [0 0 1])
+set(hM, 'markeredgecolor', [1 0 0])
+
+xlabel('Z')
+ylabel('Weight  H = 1')
+
 set(gca,  "fontsize", 12);
 grid on
 
@@ -38,9 +44,19 @@ xticksarray = [2, 10, 18, 21, 31, 32, 36, 43, 49, 54, 86]
 xticks(xticksarray)
 %yticks(81:1:93)
 
-xlabel('Z')
-ylabel('Weight  H = 1')
+
 figure_name_out=strcat('MendeleevWeight','.png')
+print('-dpng', '-r300', figure_name_out), pwd
+
+
+xlim([72.5 80.5])
+ylim([180 201])
+xticksarray = [73:80]
+xticks(xticksarray)
+set(hM, 'markersize', 10)
+set(gca,  "fontsize", 14);
+grid on
+figure_name_out=strcat('MendeleevWeightPlatinoid','.png')
 print('-dpng', '-r300', figure_name_out), pwd
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
