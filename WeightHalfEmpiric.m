@@ -45,6 +45,60 @@ xticksarray = [2, 10, 18, 21, 31, 32, 36, 43, 49, 54, 86]
 xticks(xticksarray)
 %yticks(81:1:93)
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-figure_name_out=strcat('MendeleevWeight','.png')
+figure
+hold on
+hM = plot( RichardsWeight, 'sb' )
+set(hM, 'markersize', 6)
+set(hM, 'markerfacecolor', [0 0 1])
+set(hM, 'markeredgecolor', [1 0 0])
+hZ = plot(ZW,AtomicW, '.k')
+
+lgd12 = legend([hM hZ], ...
+  {'Richards data', 'Half-empiric formula'})
+set(lgd12, 'location', 'north')
+set(lgd12, 'fontsize', 16)
+
+figure_name_out=strcat('RichardsWeightHalfEmpirical','.png')
 print('-dpng', '-r300', figure_name_out), pwd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+figure
+hold on
+hM = plot( BerzeliusWeight, 'sb' )
+set(hM, 'markersize', 6)
+set(hM, 'markerfacecolor', [0 0 1])
+set(hM, 'markeredgecolor', [1 0 0])
+hZ = plot(ZW,AtomicW, '.k')
+
+lgd12 = legend([hM hZ], ...
+  {'BerzeliusWeight data', 'Half-empiric formula'})
+set(lgd12, 'location', 'north')
+set(lgd12, 'fontsize', 16)
+
+figure_name_out=strcat('BerzeliusWeightHalfEmpirical','.png')
+print('-dpng', '-r300', figure_name_out), pwd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure
+hold on
+hM = plot( ProutMass1815, 'sb' )
+set(hM, 'markersize', 6)
+set(hM, 'markerfacecolor', [0 0 1])
+set(hM, 'markeredgecolor', [1 0 0])
+hZ = plot(ZW,AtomicW, '.k')
+
+lgd12 = legend([hM hZ], ...
+  {'Prout data', 'Half-empiric formula'})
+set(lgd12, 'location', 'north')
+set(lgd12, 'fontsize', 16)
+
+figure_name_out=strcat('ProutWeightHalfEmpirical','.png')
+print('-dpng', '-r300', figure_name_out), pwd
+
+
