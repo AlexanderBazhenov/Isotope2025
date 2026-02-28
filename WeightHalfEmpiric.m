@@ -101,4 +101,43 @@ set(lgd12, 'fontsize', 16)
 figure_name_out=strcat('ProutWeightHalfEmpirical','.png')
 print('-dpng', '-r300', figure_name_out), pwd
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+figure
+hold on
+hP = plot( ProutMass1815, 'sb' )
+set(hP, 'markersize', 6)
+set(hP, 'markerfacecolor', [0 0 0])
+set(hP, 'markeredgecolor', [0 0 0])
+
+hB = plot( BerzeliusWeight, 'sb' )
+set(hB, 'markersize', 6)
+set(hB, 'markerfacecolor', 0.5*[1 1 1])
+set(hB, 'markeredgecolor', 0.5*[1 1 1])
+
+hM = plot( MendeleevWeight, 'sb' )
+set(hM, 'markersize', 6)
+set(hM, 'markerfacecolor', [0 1 1])
+set(hM, 'markeredgecolor', [0 1 1])
+
+hR = plot( RichardsWeight, 'sb' )
+set(hR, 'markersize', 6)
+set(hR, 'markerfacecolor', 1*[1 1 1])
+set(hR, 'markeredgecolor', 0.5*[1 0 0])
+
+hZ = plot(ZW,AtomicW, '.k')
+
+xlabel('Z')
+ylabel('Weight  H = 1')
+set(gca,  "fontsize", 16);
+grid on
+
+ylim([0 450])
+
+lgd1234 = legend([hP hB hM hR hZ], ...
+  {'Prout', 'Berzelius', 'Mendeleev', 'Richards', 'Half-empiric formula'})
+set(lgd1234, 'location', 'north')
+set(lgd1234, 'fontsize', 16)
+
+figure_name_out=strcat('ProutRichardsHalfEmpirical','.png')
+print('-dpng', '-r300', figure_name_out), pwd
