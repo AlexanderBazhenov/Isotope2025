@@ -9,7 +9,8 @@ close all
 %
 %dirroot = 'd:\ST\2025\T\Isotopes'
 dirroot = 'd:\ST\2026\T\Isotopes'
-##dirki = 'd:\ST\2024\T\kinterval-0.0.1'
+% 2026-03-01
+dirki = 'd:\ST\2026\T\Isotopes\kinterval-0.0.1\'
 ##dirOld =  'd:\ST\2023\T\'
 % HomePC
 ##dirroot = 'D:\ST\2024\T\'
@@ -22,6 +23,7 @@ dirroot = 'd:\ST\2026\T\Isotopes'
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     START    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 addpath(dirroot)
+addpath(dirki)
 %addpath(dirOld)
 cd(dirroot)
 pwd

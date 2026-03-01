@@ -20,8 +20,8 @@ nZW = unique(rZW)
 
 pkg load interval
 
-AtomicWint = NaN(max(rZW),1)
-clear AtomicWint
+##AtomicWint = NaN(max(rZW),1)
+##clear AtomicWint
 
 for ii = 1:max(rZW)
 zii = find(rZW == ii)
@@ -33,13 +33,55 @@ supAtomicWint = sup(AtomicWint)
 
 figure
 hold on
-plot(nZW,infAtomicWint, '-b')
-plot(nZW,supAtomicWint, '-b')
+hzinf = plot(nZW,infAtomicWint, '-b')
+hzsup = plot(nZW,supAtomicWint, '-b')
 hM = plot( RichardsWeight, 'sb' )
 set(hM, 'markersize', 6)
 set(hM, 'markerfacecolor', [0 0 1])
 set(hM, 'markeredgecolor', [1 0 0])
 
+lgd12 = legend([hM hzinf hzsup ], ...
+  {'Richards data', 'Half-empiric formula inf', 'Half-empiric formula sup'})
+set(lgd12, 'location', 'north')
+set(lgd12, 'fontsize', 16)
+
+xlabel('Z')
+ylabel('Weight  H = 1')
+
+set(gca,  "fontsize", 16);
+grid on
+
+figure_name_out=strcat('RichardsWeightHalfEmpiricalInt','.png')
+print('-dpng', '-r300', figure_name_out), pwd
+
+RichardsWeightInt = midrad(RichardsWeight, 0.1)
+
+##dirki = 'e:\Users\Public\Documents\ST\2024\T\kinterval-0.0.1'
+##addpath(dirki)
+
+
+
+for ii = 1:max(rZW)
+x = kinterval(inf(RichardsWeightInt(ii)),sup(RichardsWeightInt(ii)))
+y = kinterval(inf(AtomicWint(ii)),sup(AtomicWint(ii)))
+J1 = wedge(x,y)
+J2 = vee(x,y)
+Jaccard(ii) = wid(J1)/wid(J2)
+end
+
+figure
+hold on
+plot(Jaccard)
+xlabel('Z')
+ylabel('Ji')
+
+set(gca,  "fontsize", 16);
+grid on
+
+figure_name_out=strcat('RichardsWeightHalfEmpiricalJi','.png')
+print('-dpng', '-r300', figure_name_out), pwd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MendeleevWeight.m
 % MendeleevWeight (1:94)
