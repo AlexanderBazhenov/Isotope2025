@@ -56,6 +56,19 @@ grid on
 
 figure_name_out=strcat('RichardsWeightHalfEmpiricalInt','.png')
 print('-dpng', '-r300', figure_name_out), pwd
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+dA = mid(AtomicWint) - RichardsWeight
+figure
+hM = plot( dA, 'sb' )
+set(hM, 'markersize', 6)
+set(hM, 'markerfacecolor', [0 0 1])
+set(hM, 'markeredgecolor', [1 0 0])
+xlabel('Z')
+ylabel('\Delta A')
+
+figure_name_out=strcat('DeltaRichardsWeightHalfEmpirical','.png')
+print('-dpng', '-r300', figure_name_out), pwd
 
 %%%%%%%%%%%%%%%%%%%%%%%%%     Ji    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -78,6 +91,25 @@ if ~isnan(inf(x))
 end
 end
 
+
+
+find(Jaccard > 0)
+
+Jaccardx = NaN(1,max(rZW))
+for ii = 1:max(rZW)
+x = kinterval(inf(RichardsWeightInt(ii)),sup(RichardsWeightInt(ii)))
+if ~isnan(inf(x))
+    y = kinterval(inf(AtomicWint(ii)),sup(AtomicWint(ii)))
+    J1 = wedge(x,y)
+    J2 = x
+    Jaccardx(ii) = wid(J1)/wid(J2)
+end
+end
+
+find(Jaccardx > 0)
+
+
+
 figure
 hold on
 %plot(Jaccard, 'ob')
@@ -87,16 +119,34 @@ set(hJ, 'markerfacecolor', [0 0 1])
 set(hJ, 'markeredgecolor', [1 0 0])
 xlabel('Z')
 ylabel('Ji')
+figure_name_out=strcat('RichardsWeightHalfEmpiricalJi',' Err=', num2str(RichardsErrors),'.png')
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+figure
+hold on
+%plot(Jaccard, 'ob')
+hJ = plot( Jaccardx, 'sb' )
+set(hJ, 'markersize', 8)
+set(hJ, 'markerfacecolor', [0 0 1])
+set(hJ, 'markeredgecolor', [1 0 0])
+xlabel('Z')
+ylabel('Jix')
+ylim([-250 2])
+
+figure_name_out=strcat('RichardsWeightHalfEmpiricalJix',' Err=', num2str(RichardsErrors),'.png')
 
 set(gca,  "fontsize", 16);
 grid on
 
-figure_name_out=strcat('RichardsWeightHalfEmpiricalJi',' Err=', num2str(RichardsErrors),'.png')
+
 print('-dpng', '-r300', figure_name_out), pwd
 
-find(Jaccard > 0)
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MendeleevWeight.m
 % MendeleevWeight (1:94)
