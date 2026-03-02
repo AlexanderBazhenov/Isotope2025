@@ -20,12 +20,15 @@ nZW = unique(rZW)
 
 pkg load interval
 
+dirki = 'd:\Users\Public\Documents\ST\2026\T\Isotopes\kinterval-0.0.1'
+addpath(dirki)
+
 ##AtomicWint = NaN(max(rZW),1)
 ##clear AtomicWint
 
 for ii = 1:max(rZW)
-zii = find(rZW == ii)
-AtomicWint (ii) = infsup(min(zii),max(zii))
+zii = find(rZW == ii);
+AtomicWint (ii) = infsup(min(zii),max(zii));
 end
 
 infAtomicWint = inf(AtomicWint)
@@ -54,32 +57,44 @@ grid on
 figure_name_out=strcat('RichardsWeightHalfEmpiricalInt','.png')
 print('-dpng', '-r300', figure_name_out), pwd
 
-RichardsWeightInt = midrad(RichardsWeight, 0.1)
+%%%%%%%%%%%%%%%%%%%%%%%%%     Ji    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+RichardsErrors = 0.01
+RichardsWeightInt = midrad(RichardsWeight, RichardsErrors)
 
 ##dirki = 'e:\Users\Public\Documents\ST\2024\T\kinterval-0.0.1'
 ##addpath(dirki)
 
 
-
+Jaccard = NaN(1,max(rZW))
 for ii = 1:max(rZW)
+  Jaccard(ii) = NaN(1)
 x = kinterval(inf(RichardsWeightInt(ii)),sup(RichardsWeightInt(ii)))
-y = kinterval(inf(AtomicWint(ii)),sup(AtomicWint(ii)))
-J1 = wedge(x,y)
-J2 = vee(x,y)
-Jaccard(ii) = wid(J1)/wid(J2)
+if ~isnan(inf(x))
+    y = kinterval(inf(AtomicWint(ii)),sup(AtomicWint(ii)))
+    J1 = wedge(x,y)
+    J2 = vee(x,y)
+    Jaccard(ii) = wid(J1)/wid(J2)
+end
 end
 
 figure
 hold on
-plot(Jaccard)
+%plot(Jaccard, 'ob')
+hJ = plot( Jaccard, 'sb' )
+set(hJ, 'markersize', 10)
+set(hJ, 'markerfacecolor', [0 0 1])
+set(hJ, 'markeredgecolor', [1 0 0])
 xlabel('Z')
 ylabel('Ji')
 
 set(gca,  "fontsize", 16);
 grid on
 
-figure_name_out=strcat('RichardsWeightHalfEmpiricalJi','.png')
+figure_name_out=strcat('RichardsWeightHalfEmpiricalJi',' Err=', num2str(RichardsErrors),'.png')
 print('-dpng', '-r300', figure_name_out), pwd
+
+find(Jaccard > 0)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
