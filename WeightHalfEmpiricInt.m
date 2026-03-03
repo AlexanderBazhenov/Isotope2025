@@ -127,7 +127,18 @@ end
 
 find(Jaccardx > 0)
 
+Jaccardy = NaN(1,max(rZW))
+for ii = 1:max(rZW)
+x = kinterval(inf(RichardsWeightInt(ii)),sup(RichardsWeightInt(ii)))
+if ~isnan(inf(x))
+    y = kinterval(inf(AtomicWint(ii)),sup(AtomicWint(ii)))
+    J1 = wedge(x,y)
+    J2 = y
+    Jaccardy(ii) = wid(J1)/wid(J2)
+end
+end
 
+find(Jaccardy > 0)
 
 figure
 hold on
@@ -154,8 +165,23 @@ ylim([-250 2])
 
 figure_name_out=strcat('RichardsWeightHalfEmpiricalJix',' Err=', num2str(RichardsErrors),'.png')
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure
+hold on
+%plot(Jaccard, 'ob')
+hJ = plot( Jaccardy, 'sb' )
+set(hJ, 'markersize', 8)
+set(hJ, 'markerfacecolor', [0 0 1])
+set(hJ, 'markeredgecolor', [1 0 0])
+xlabel('Z')
+ylabel('Jiy')
+ylim([-3.1 0.1])
+
 set(gca,  "fontsize", 16);
 grid on
+xlim([1 max(rZW)])
+figure_name_out=strcat('RichardsWeightHalfEmpiricalJiy',' Err=', num2str(RichardsErrors),'.png')
 
 
 print('-dpng', '-r300', figure_name_out), pwd
