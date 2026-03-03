@@ -33,6 +33,7 @@ end
 
 infAtomicWint = inf(AtomicWint)
 supAtomicWint = sup(AtomicWint)
+widAtomicWint = wid(AtomicWint)
 
 figure
 hold on
@@ -60,12 +61,30 @@ print('-dpng', '-r300', figure_name_out), pwd
 
 dA = mid(AtomicWint) - RichardsWeight
 figure
+hold on
 hM = plot( dA, 'sb' )
 set(hM, 'markersize', 6)
 set(hM, 'markerfacecolor', [0 0 1])
 set(hM, 'markeredgecolor', [1 0 0])
 xlabel('Z')
-ylabel('\Delta A')
+ylabel('\Delta A, H = 1')
+##xx = [0 max(rZW)]
+##yy = [1 1]
+##pUp = plot(xx, yy,  '--k')
+##yy = [-1 -1]
+##pLo = plot(xx, yy,  '--k')
+%
+pradUp = plot(widAtomicWint(1:end-1)/2, '-b')
+pradLo = plot(-widAtomicWint(1:end-1)/2, '-b')
+
+set(gca,  "fontsize", 16);
+grid on
+xlim([1 max(rZW)])
+
+lgd12 = legend([hM pradUp pradLo], ...
+  {'Delta A', 'Half-empiric formula rad', 'Half-empiric formula rad'})
+set(lgd12, 'location', 'north')
+set(lgd12, 'fontsize', 16)
 
 figure_name_out=strcat('DeltaRichardsWeightHalfEmpirical','.png')
 print('-dpng', '-r300', figure_name_out), pwd
