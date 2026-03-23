@@ -23,7 +23,7 @@ BalmerData =  [
 ##BalmerRitzErrors =  BalmerData(:,4)
 ##BalmerRitzInt = midrad(BalmerRitz, BalmerRitzErrors)
 
-
+pkg load interval
 
 
 clear J1, J2
@@ -131,6 +131,36 @@ y = LymanData(ii,3)
     J1ind(ii) = J1
     JaccardLymanRitz(ii) = J1/J2
 end
+%
+LymanExp = LymanData(:,1)
+LymanExpErrors =  LymanData(:,2)
+LymanExpInt = midrad(LymanExp, LymanExpErrors)
+
+LymanRitz = LymanData(:,3)
+LymanRitzErrors =  LymanData(:,4)
+LymanRitzInt = midrad(LymanRitz, LymanRitzErrors)
+
+figure
+hold on
+h1 = errorbar (LymanData(:,6), LymanExp-LymanRitz, LymanExpErrors,".b");
+set (h1, 'linewidth', 2);
+set (h1, 'color', RoyalMail);
+h2 = errorbar (LymanData(:,6), LymanRitz-LymanRitz, LymanRitzErrors,".r");
+set (h2, 'linewidth', 2);
+set (h2, 'color', Pantone);
+
+lgd12 = legend([h1 h2 ], ...
+  {'Exp data', 'Ritz data'})
+set(lgd12, 'location', 'northeast')
+set(lgd12, 'fontsize', 16)
+
+set(gca, 'fontsize', 16)
+grid on
+
+xlabel('m')
+
+figure_name_out=strcat('LymanExp-LymanRitz','.png')
+print('-dpng', '-r300', figure_name_out), pwd
 
 
 
