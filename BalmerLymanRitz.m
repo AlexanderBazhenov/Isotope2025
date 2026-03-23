@@ -24,6 +24,8 @@ BalmerData =  [
 ##BalmerRitzInt = midrad(BalmerRitz, BalmerRitzErrors)
 
 
+
+
 clear J1, J2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,6 +47,43 @@ y = BalmerData(ii,3)
     JaccardBalmerRitz(ii) = J1/J2
 end
 %
+
+BalmerExp = BalmerData(:,1)
+BalmerExpErrors =  BalmerData(:,2)
+BalmerExpInt = midrad(BalmerExp, BalmerExpErrors)
+
+BalmerRitz = BalmerData(:,3)
+BalmerRitzErrors =  BalmerData(:,4)
+BalmerRitzInt = midrad(BalmerRitz, BalmerRitzErrors)
+
+
+OxfordBlue = [0, .33, .71]
+RoyalMail = 4.58*[0.218, .032, 0.042]
+Pantone = 3*[0.128, 0.140, 0.036]
+%
+figure
+hold on
+h1 = errorbar (BalmerData(:,6), BalmerExp-BalmerRitz, BalmerExpErrors,".b");
+set (h1, 'linewidth', 2);
+set (h1, 'color', RoyalMail);
+h2 = errorbar (BalmerData(:,6), BalmerRitz-BalmerRitz, BalmerRitzErrors,".r");
+set (h2, 'linewidth', 2);
+set (h2, 'color', Pantone);
+
+lgd12 = legend([h1 h2 ], ...
+  {'Exp data', 'Ritz data'})
+set(lgd12, 'location', 'northeast')
+set(lgd12, 'fontsize', 16)
+
+set(gca, 'fontsize', 16)
+grid on
+
+xlabel('m')
+
+figure_name_out=strcat('BalmerExp-BalmerRitz','.png')
+print('-dpng', '-r300', figure_name_out), pwd
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Lyman series Ritz compatibilty
 % ADS data
