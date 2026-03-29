@@ -68,4 +68,17 @@ ylabel('m/e, 10^{-7} ')
 figure_name_out=strcat('Thosmon',' err=',num2str(err),'.png')
 print('-dpng', '-r300', figure_name_out), pwd
 
+[ min(inf(meint)), max(sup(meint)) ]
+[ max(inf(meint)), min(sup(meint)) ]
+
+dirroot2 = 'd:\ST\2026\T\'
+addpath(dirroot2)
+
+X = meint/1000
+[mode, mu_array, max_mu, mode_ind, c_array, C, multi]= modeIR4(X)
+retval = ModePlot (mode, mu_array, max_mu, mode_ind, c_array, C, multi) %, PlotColor)
+xlim([0.6 2.2])
+xlabel('m/e')
+figure_name_out=strcat('ThosmonMode',' err=',num2str(err),'.png')
+print('-dpng', '-r300', figure_name_out), pwd
 
