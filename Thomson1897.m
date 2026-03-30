@@ -30,6 +30,7 @@ v = ThomsonData(:,6)
 pkg load interval
 
 err = 0.1/2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 thetaint = midrad(theta, err*theta)
 Hint = midrad(H, err*H)
 Fint = midrad(F, err*F)
@@ -79,6 +80,13 @@ X = meint/1000
 retval = ModePlot (mode, mu_array, max_mu, mode_ind, c_array, C, multi) %, PlotColor)
 xlim([0.6 2.2])
 xlabel('m/e')
+grid on
 figure_name_out=strcat('ThosmonMode',' err=',num2str(err),'.png')
 print('-dpng', '-r300', figure_name_out), pwd
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+err = 0.1/2/2
+
+
 
