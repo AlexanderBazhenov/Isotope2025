@@ -37,7 +37,7 @@ set(hM, 'markeredgecolor', [1 0 0])
 xlabel('Z')
 ylabel('Weight  H = 1')
 
-set(gca,  "fontsize", 12);
+set(gca,  "fontsize", 16);
 grid on
 
 xticksarray = [2, 10, 18, 21, 31, 32, 36, 43, 49, 54, 86]
